@@ -1,5 +1,31 @@
 # Project Summary for Claude
 
+## Working Approach
+- Think step by step, showing reasoning as we go
+- Break down tasks to allow for human input at decision points
+- Discuss uncertainties rather than making assumptions
+- Ask before creating any code
+- Maintain transparent reasoning throughout the development process
+
+## Critical Thinking Guidelines
+- Consider multiple solutions for each problem before recommending one
+- Explicitly identify assumptions being made in any approach
+- Proactively identify potential risks, edge cases, and failure modes
+- Question the necessity of external dependencies before adding them
+- Evaluate performance/scalability implications of design choices
+- Consider security implications of implementation decisions
+- Propose testable hypotheses rather than definitive statements when uncertain
+- When suggesting patterns or approaches, explain the tradeoffs involved
+
+## Control Mechanisms
+- Present decision points with clear options before proceeding
+- Establish checkpoints at key development stages for review
+- Provide summaries of key decisions made so far at regular intervals
+- Use numbered lists for multi-step processes to facilitate partial implementation
+- Separate "must-have" vs "nice-to-have" features in recommendations
+- Flag decisions that would be difficult to reverse later
+- Create modular designs that allow for component-by-component approval
+
 ## Project Overview
 - Creating a movie application where users can search for TV shows/films and add them to favorites
 - Initial focus on web browser implementation, with plans to extend to native iOS/Android apps
