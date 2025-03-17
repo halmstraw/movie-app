@@ -1,0 +1,309 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/movie-app-schemas.json",
+  "definitions": {
+    "Movie": {
+      "type": "object",
+      "required": ["id", "title", "posterPath", "mediaType"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the movie"
+        },
+        "title": {
+          "type": "string",
+          "description": "Movie title"
+        },
+        "originalTitle": {
+          "type": "string",
+          "description": "Original movie title in source language"
+        },
+        "posterPath": {
+          "type": ["string", "null"],
+          "description": "Relative path to movie poster image"
+        },
+        "backdropPath": {
+          "type": ["string", "null"],
+          "description": "Relative path to backdrop image"
+        },
+        "overview": {
+          "type": "string",
+          "description": "Movie synopsis or description"
+        },
+        "releaseDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Movie release date (YYYY-MM-DD)"
+        },
+        "voteAverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Average vote score out of 10"
+        },
+        "voteCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of votes"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "runtime": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "description": "Runtime in minutes"
+        },
+        "mediaType": {
+          "type": "string",
+          "enum": ["movie"],
+          "description": "Type of media (movie)"
+        }
+      }
+    },
+    "TVShow": {
+      "type": "object",
+      "required": ["id", "name", "posterPath", "mediaType"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Unique identifier for the TV show"
+        },
+        "name": {
+          "type": "string",
+          "description": "TV show name"
+        },
+        "originalName": {
+          "type": "string",
+          "description": "Original TV show name in source language"
+        },
+        "posterPath": {
+          "type": ["string", "null"],
+          "description": "Relative path to TV show poster image"
+        },
+        "backdropPath": {
+          "type": ["string", "null"],
+          "description": "Relative path to backdrop image"
+        },
+        "overview": {
+          "type": "string",
+          "description": "TV show synopsis or description"
+        },
+        "firstAirDate": {
+          "type": "string",
+          "format": "date",
+          "description": "First air date (YYYY-MM-DD)"
+        },
+        "lastAirDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Last air date (YYYY-MM-DD)"
+        },
+        "voteAverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Average vote score out of 10"
+        },
+        "voteCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of votes"
+        },
+        "genres": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name"],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "numberOfSeasons": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of seasons"
+        },
+        "numberOfEpisodes": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of episodes"
+        },
+        "mediaType": {
+          "type": "string",
+          "enum": ["tv"],
+          "description": "Type of media (tv)"
+        }
+      }
+    },
+    "SearchResult": {
+      "type": "object",
+      "required": ["results", "page", "totalResults", "totalPages"],
+      "properties": {
+        "results": {
+          "type": "array",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/definitions/Movie" },
+              { "$ref": "#/definitions/TVShow" }
+            ]
+          }
+        },
+        "page": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Current page number"
+        },
+        "totalResults": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of results available"
+        },
+        "totalPages": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of pages available"
+        }
+      }
+    },
+    "FavoriteItem": {
+      "type": "object",
+      "required": ["id", "mediaType", "addedAt"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "ID of the favorited item"
+        },
+        "mediaType": {
+          "type": "string",
+          "enum": ["movie", "tv"],
+          "description": "Type of media (movie or tv)"
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO timestamp when the item was added to favorites"
+        },
+        "title": {
+          "type": "string",
+          "description": "Title of movie (if mediaType is movie)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of TV show (if mediaType is tv)"
+        },
+        "posterPath": {
+          "type": ["string", "null"],
+          "description": "Path to poster image"
+        },
+        "releaseDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "Release date for movies"
+        },
+        "firstAirDate": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "First air date for TV shows"
+        },
+        "voteAverage": {
+          "type": "number",
+          "description": "Average rating"
+        }
+      }
+    },
+    "UserPreferences": {
+      "type": "object",
+      "properties": {
+        "theme": {
+          "type": "string",
+          "enum": ["light", "dark", "system"],
+          "default": "system",
+          "description": "User interface theme preference"
+        },
+        "defaultView": {
+          "type": "string",
+          "enum": ["grid", "list"],
+          "default": "grid",
+          "description": "Default view mode for search results and listings"
+        },
+        "adultContent": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to include adult content in search results"
+        },
+        "preferredLanguage": {
+          "type": "string",
+          "pattern": "^[a-z]{2}(-[A-Z]{2})?$",
+          "default": "en-US",
+          "description": "Preferred language for content (ISO 639-1 code)"
+        },
+        "notifications": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether notifications are enabled"
+            },
+            "newReleases": {
+              "type": "boolean",
+              "default": true,
+              "description": "Notify about new releases for favorited content"
+            }
+          }
+        }
+      }
+    },
+    "Screen": {
+      "type": "object",
+      "required": ["id", "name", "route"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the screen"
+        },
+        "name": {
+          "type": "string",
+          "description": "Human-readable name of the screen"
+        },
+        "route": {
+          "type": "string",
+          "description": "URL route for the screen"
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Components that appear on this screen"
+          }
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Actions that can be performed on this screen"
+          }
+        }
+      }
+    }
+  }
+}
