@@ -1,0 +1,84 @@
+{
+  "journeyId": "filter-favorites",
+  "journeyName": "Filter Favorites by Genre",
+  "description": "User views their favorite movies and filters them by genre",
+  "startPoint": "favorites-screen",
+  "steps": [
+    {
+      "stepId": "view-favorites",
+      "stepType": "view",
+      "screenId": "favorites-screen",
+      "description": "User views their favorites list",
+      "expectations": [
+        "List of favorite movies is displayed",
+        "Filter controls are visible",
+        "Each movie card shows title, poster, and rating"
+      ],
+      "actions": [
+        {
+          "actionType": "click",
+          "target": "filter-dropdown",
+          "expectedResult": "Genre filter options are displayed"
+        }
+      ],
+      "nextStep": "select-genre"
+    },
+    {
+      "stepId": "select-genre",
+      "stepType": "action",
+      "screenId": "favorites-screen",
+      "description": "User selects a genre to filter by",
+      "actions": [
+        {
+          "actionType": "click",
+          "target": "genre-option-action",
+          "expectedResult": "Action genre is selected in the dropdown"
+        }
+      ],
+      "nextStep": "view-filtered-results"
+    },
+    {
+      "stepId": "view-filtered-results",
+      "stepType": "view",
+      "screenId": "favorites-screen",
+      "description": "User views the filtered favorites list",
+      "expectations": [
+        "Only action movies are displayed",
+        "Filter indicator shows 'Action' as the active filter",
+        "Clear filter button is visible"
+      ],
+      "actions": [
+        {
+          "actionType": "click",
+          "target": "clear-filter-button",
+          "expectedResult": "All favorites are displayed again"
+        }
+      ],
+      "nextStep": "view-all-favorites"
+    },
+    {
+      "stepId": "view-all-favorites",
+      "stepType": "view",
+      "screenId": "favorites-screen",
+      "description": "User views all favorites again",
+      "expectations": [
+        "All favorite movies are displayed",
+        "No active filter is indicated"
+      ],
+      "actions": [],
+      "nextStep": null
+    }
+  ],
+  "outcomes": [
+    {
+      "outcomeId": "successful-filtering",
+      "description": "User successfully filtered favorites by genre",
+      "condition": "Only movies of the selected genre were displayed"
+    },
+    {
+      "outcomeId": "successful-reset",
+      "description": "User successfully cleared the filter",
+      "condition": "All favorites were displayed after clearing the filter"
+    }
+  ]
+} 

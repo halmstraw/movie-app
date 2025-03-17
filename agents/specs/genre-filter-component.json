@@ -1,0 +1,52 @@
+{
+  "componentId": "genre-filter",
+  "componentType": "FilterDropdown",
+  "description": "A dropdown component that allows users to filter movies by genre",
+  "props": {
+    "genres": {
+      "type": "array",
+      "description": "Array of available genres",
+      "items": {
+        "id": "number",
+        "name": "string"
+      }
+    },
+    "selectedGenre": {
+      "type": "number",
+      "description": "ID of the currently selected genre, null if no genre is selected",
+      "nullable": true
+    },
+    "onGenreSelect": {
+      "type": "function",
+      "description": "Callback function when a genre is selected",
+      "parameters": {
+        "genreId": "number"
+      }
+    },
+    "onClearFilter": {
+      "type": "function",
+      "description": "Callback function when the filter is cleared"
+    }
+  },
+  "state": {
+    "isOpen": {
+      "type": "boolean",
+      "description": "Whether the dropdown is open",
+      "default": false
+    }
+  },
+  "interactions": [
+    "Click on the dropdown to open/close it",
+    "Click on a genre to select it and filter the movies",
+    "Click on 'Clear Filter' to remove the genre filter"
+  ],
+  "apiCalls": [],
+  "accessibility": {
+    "keyboard": "Dropdown should be navigable with keyboard",
+    "aria": "Should include appropriate ARIA attributes for a dropdown"
+  },
+  "styling": {
+    "theme": "Should respect the application's theme (light/dark)",
+    "responsive": "Should adapt to different screen sizes"
+  }
+} 
