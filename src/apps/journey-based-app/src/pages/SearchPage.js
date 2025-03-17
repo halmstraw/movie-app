@@ -187,7 +187,7 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   
   // Search for movies when query or page changes
   useEffect(() => {

@@ -4,15 +4,15 @@ import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components';
 
 // Import components from the AI Prompt Generated app
-import { ThemeProvider as CustomThemeProvider, useTheme } from '../apps/ai-prompt-generated/src/context/ThemeContext';
-import { FavoritesProvider } from '../apps/ai-prompt-generated/src/context/FavoritesContext';
-import HomePage from '../apps/ai-prompt-generated/src/pages/HomePage';
-import SearchPage from '../apps/ai-prompt-generated/src/pages/SearchPage';
-import MovieDetailPage from '../apps/ai-prompt-generated/src/pages/MovieDetailPage';
-import FavoritesPage from '../apps/ai-prompt-generated/src/pages/FavoritesPage';
-import NotFoundPage from '../apps/ai-prompt-generated/src/pages/NotFoundPage';
-import GlobalStyles from '../apps/ai-prompt-generated/src/assets/styles/GlobalStyles';
-import ErrorBoundary from '../apps/ai-prompt-generated/src/ErrorBoundary';
+import { ThemeProvider as CustomThemeProvider, useTheme } from './ai-prompt-generated/src/context/ThemeContext';
+import { FavoritesProvider } from './ai-prompt-generated/src/context/FavoritesContext';
+import HomePage from './ai-prompt-generated/src/pages/HomePage';
+import SearchPage from './ai-prompt-generated/src/pages/SearchPage';
+import MovieDetailPage from './ai-prompt-generated/src/pages/MovieDetailPage';
+import FavoritesPage from './ai-prompt-generated/src/pages/FavoritesPage';
+import NotFoundPage from './ai-prompt-generated/src/pages/NotFoundPage';
+import GlobalStyles from './ai-prompt-generated/src/assets/styles/GlobalStyles';
+import ErrorBoundary from './ai-prompt-generated/src/ErrorBoundary';
 
 // Styled components for the app wrapper
 const BackButton = styled.button`

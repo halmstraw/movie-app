@@ -237,7 +237,7 @@ const NoRecommendationsMessage = styled.p`
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   
   const [movie, setMovie] = useState(null);

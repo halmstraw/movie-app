@@ -132,7 +132,7 @@ const ExploreButton = styled(Link)`
 
 const FavoritesPage = () => {
   const navigate = useNavigate();
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
   const { favorites, removeFavorite } = useFavorites();
   
   // Extract year from release date
