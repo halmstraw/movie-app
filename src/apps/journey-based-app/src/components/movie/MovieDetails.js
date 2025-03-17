@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { formatDate, formatRuntime } from '../../utils/formatters';
+import { useParams, useNavigate } from 'react-router-dom';
+import { formatDate, formatRuntime, formatMoney } from '../../utils/formatters';
 import { movieApi } from '../../api';
+import { useFavorites } from '../../context/FavoritesContext';
+import Spinner from '../ui/Spinner';
+import ErrorMessage from '../ui/ErrorMessage';
 import FavoriteButton from './FavoriteButton';
 
 const DetailsContainer = styled.div`
@@ -132,7 +136,47 @@ const Rating = styled.div`
  * @param {object} props.movie - Movie data
  */
 const MovieDetails = ({ movie }) => {
-  if (!movie) return null;
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [currentMovie, setCurrentMovie] = useState(null);
+
+  useEffect(() => {
+    const fetchMovieDetails = async () => {
+      try {
+        setLoading(true);
+        const data = await movieApi.getMovieDetails(movie.id);
+        setCurrentMovie(data);
+        
+        // Destructure only the properties you need
+        const { 
+          title, 
+          poster_path, 
+          release_date, 
+          vote_average 
+        } = data;
+        
+        // Use only the variables you need
+        setCurrentMovie({
+          id: parseInt(movie.id),
+          title,
+          poster_path,
+          release_date,
+          vote_average
+        });
+        
+        setError(null);
+      } catch (err) {
+        setError('Failed to fetch movie details. Please try again later.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchMovieDetails();
+  }, [movie.id]);
+
+  if (!currentMovie) return null;
   
   const {
     id,
@@ -149,7 +193,7 @@ const MovieDetails = ({ movie }) => {
     budget,
     revenue,
     production_companies = []
-  } = movie;
+  } = currentMovie;
   
   const posterUrl = movieApi.getImageUrl(poster_path, 'w500');
   const releaseYear = release_date ? new Date(release_date).getFullYear() : '';

@@ -41,11 +41,7 @@ const movieApi = {
   // Get movie details by ID
   getMovieDetails: async (movieId) => {
     try {
-      const response = await api.get(`/movie/${movieId}`, {
-        params: {
-          append_to_response: 'credits,similar'
-        }
-      });
+      const response = await api.get(`/movie/${movieId}`);
       return response.data;
     } catch (error) {
       console.error(`Error fetching movie details for ID ${movieId}:`, error);
