@@ -4,6 +4,8 @@ import styled from 'styled-components';
 
 // Import the AI Prompt Generated app
 import AIPromptGeneratedApp from './apps/AIPromptGeneratedApp';
+// Import the Journey Based app
+import JourneyBasedApp from './apps/JourneyBasedApp';
 
 // Styled components for the homepage
 const Container = styled.div`
@@ -114,15 +116,14 @@ const HomePage = () => {
           </AppInfo>
         </AppCard>
         
-        {/* Placeholder for future implementations */}
         <AppCard>
-          <AppImage>🚧</AppImage>
+          <AppImage>🧭</AppImage>
           <AppInfo>
-            <AppTitle>Coming Soon</AppTitle>
+            <AppTitle>Journey-Based MovieApp</AppTitle>
             <AppDescription>
-              Another implementation of the movie app will be available here soon.
+              A movie application built using a journey-based approach, focusing on user flows and experiences.
             </AppDescription>
-            <AppLink to="/" style={{ backgroundColor: '#999' }}>Coming Soon</AppLink>
+            <AppLink to="/journey-based">View App</AppLink>
           </AppInfo>
         </AppCard>
         
@@ -148,6 +149,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/ai-prompt-generated/*" element={<AIPromptGeneratedApp />} />
+        <Route path="/journey-based/*" element={<JourneyBasedApp />} />
       </Routes>
     </BrowserRouter>
   );

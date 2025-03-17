@@ -1,0 +1,154 @@
+{
+  "journeyId": "search-view-details",
+  "journeyName": "Search and View Movie Details",
+  "description": "User searches for a movie by title and views its detailed information",
+  "startPoint": "home-screen",
+  "steps": [
+    {
+      "stepId": "view-home",
+      "stepType": "view",
+      "screenId": "home-screen",
+      "description": "User views the home screen with popular movies and search bar",
+      "expectations": [
+        "Search bar is prominently displayed at the top",
+        "Popular movies are shown in a grid layout",
+        "Navigation menu is accessible",
+        "Theme toggle is visible"
+      ],
+      "actions": [
+        {
+          "actionType": "click",
+          "target": "search-bar",
+          "expectedResult": "Search bar is focused and ready for input"
+        }
+      ],
+      "nextStep": "enter-search-query"
+    },
+    {
+      "stepId": "enter-search-query",
+      "stepType": "action",
+      "screenId": "home-screen",
+      "description": "User enters a movie title in the search bar",
+      "actions": [
+        {
+          "actionType": "input",
+          "target": "search-bar",
+          "input": "Inception",
+          "expectedResult": "Text 'Inception' appears in search bar"
+        },
+        {
+          "actionType": "click",
+          "target": "search-button",
+          "expectedResult": "Search is initiated and user is navigated to search results page"
+        }
+      ],
+      "nextStep": "view-search-results"
+    },
+    {
+      "stepId": "view-search-results",
+      "stepType": "view",
+      "screenId": "search-results-screen",
+      "description": "User views the search results for the query",
+      "expectations": [
+        "Search results for 'Inception' are displayed",
+        "Each movie card shows title, poster, and release year",
+        "Results are sorted by relevance",
+        "Pagination controls are visible if there are multiple pages"
+      ],
+      "actions": [
+        {
+          "actionType": "click",
+          "target": "movie-card-inception",
+          "expectedResult": "User is navigated to the movie details page for Inception"
+        }
+      ],
+      "nextStep": "view-movie-details"
+    },
+    {
+      "stepId": "view-movie-details",
+      "stepType": "view",
+      "screenId": "movie-details-screen",
+      "description": "User views detailed information about the selected movie",
+      "expectations": [
+        "Movie title is displayed prominently",
+        "Large movie poster is shown",
+        "Release date, runtime, and genres are visible",
+        "Rating and vote count are displayed",
+        "Movie overview/synopsis is shown",
+        "Cast information is available",
+        "Add to favorites button is accessible",
+        "Similar movies section is displayed at the bottom"
+      ],
+      "actions": [
+        {
+          "actionType": "scroll",
+          "target": "movie-details-page",
+          "expectedResult": "Page scrolls to show more information including similar movies"
+        }
+      ],
+      "nextStep": "interact-with-details"
+    },
+    {
+      "stepId": "interact-with-details",
+      "stepType": "action",
+      "screenId": "movie-details-screen",
+      "description": "User interacts with elements on the movie details page",
+      "actions": [
+        {
+          "actionType": "click",
+          "target": "add-favorite-button",
+          "expectedResult": "Movie is added to favorites and button state changes to indicate it's in favorites"
+        },
+        {
+          "actionType": "click",
+          "target": "back-button",
+          "expectedResult": "User is navigated back to search results page"
+        }
+      ],
+      "nextStep": "return-to-search-results"
+    },
+    {
+      "stepId": "return-to-search-results",
+      "stepType": "view",
+      "screenId": "search-results-screen",
+      "description": "User returns to the search results page",
+      "expectations": [
+        "Search results for 'Inception' are still displayed",
+        "The previously viewed movie card may have a visual indicator showing it was viewed"
+      ],
+      "actions": [
+        {
+          "actionType": "click",
+          "target": "home-button",
+          "expectedResult": "User is navigated back to the home screen"
+        }
+      ],
+      "nextStep": "return-to-home"
+    },
+    {
+      "stepId": "return-to-home",
+      "stepType": "view",
+      "screenId": "home-screen",
+      "description": "User returns to the home screen",
+      "expectations": [
+        "Popular movies are displayed",
+        "Search bar is reset and empty",
+        "Recently viewed or favorited movies may be highlighted"
+      ],
+      "actions": [],
+      "nextStep": null
+    }
+  ],
+  "outcomes": [
+    {
+      "outcomeId": "successful-search-and-view",
+      "description": "User successfully searched for a movie and viewed its details",
+      "condition": "User navigated through search results to movie details and back to home"
+    },
+    {
+      "outcomeId": "movie-added-to-favorites",
+      "description": "User added the movie to their favorites collection",
+      "condition": "Add to favorites button was clicked and state changed"
+    }
+  ]
+} 
