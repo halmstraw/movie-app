@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { movieApi } from '../api';
-import { useTheme } from '../context/ThemeContext';
 import { useFavorites } from '../context/FavoritesContext';
 
 // Styled components
@@ -132,7 +131,6 @@ const ExploreButton = styled(Link)`
 
 const FavoritesPage = () => {
   const navigate = useNavigate();
-  // const { theme } = useTheme();
   const { favorites, removeFavorite } = useFavorites();
   
   // Extract year from release date

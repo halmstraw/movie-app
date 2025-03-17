@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { movieApi } from '../api';
-import { useTheme } from '../context/ThemeContext';
 import { useFavorites } from '../context/FavoritesContext';
 
 // Styled components
@@ -237,7 +236,6 @@ const NoRecommendationsMessage = styled.p`
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const navigate = useNavigate();
-  // const { theme } = useTheme();
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   
   const [movie, setMovie] = useState(null);

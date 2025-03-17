@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { movieApi } from '../api';
-import { useTheme } from '../context/ThemeContext';
 
 // Styled components
 const SearchPageContainer = styled.div`
@@ -186,8 +185,6 @@ const SearchPage = () => {
   const [page, setPage] = useState(initialPage);
   const [totalPages, setTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
-  
-  // const { theme } = useTheme();
   
   // Search for movies when query or page changes
   useEffect(() => {
